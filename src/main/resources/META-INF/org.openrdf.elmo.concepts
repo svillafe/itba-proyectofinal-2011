@@ -1,0 +1,9 @@
+argendata.model.dcat.Dataset
+argendata.model.dcat.Distribution
+argendata.model.dcat.Feed
+argendata.model.dcat.WebService
+argendata.model.dcat.Download
+argendata.model.foaf.Organization
+argendata.model.skos.Concept
+argendata.model.skos.ConceptScheme
+argendata.model.argendata.Semanticapp

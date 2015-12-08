@@ -1,0 +1,1 @@
+﻿ALTER DATABASE argendata SET bytea_output='escape';

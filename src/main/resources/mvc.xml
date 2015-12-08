@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="
+         http://www.springframework.org/schema/beans
+         http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+         http://www.springframework.org/schema/context
+         http://www.springframework.org/schema/context/spring-context-3.0.xsd
+         http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+
+	<context:component-scan base-package="argendata" />
+
+	<bean
+		class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping" />
+
+	<bean id="viewNameTranslator"
+		class="org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator" />
+
+	<bean id="jspViewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.JstlView" />
+		<property name="prefix" value="/WEB-INF/jsp/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+
+	<!-- Descomentar esto cuando tengamos algun converter -->
+	<mvc:annotation-driven conversion-service="conversionService" />
+	<bean id="conversionService"
+		class="argendata.web.controller.EnhancedFormattingConversionServiceFactoryBean">
+	</bean>
+
+
+	<bean id="messageSource"
+		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="basename" value="/WEB-INF/i18n/messages" />
+		<property name="cacheSeconds" value="0" />
+	</bean>
+
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="307200" />
+	</bean>
+
+	<bean id="gsonWriter" class="argendata.misc.GSONWriter" scope="singleton" />
+	<bean id="gsonReader" class="argendata.misc.GSONReader" scope="singleton" />
+
+	<!-- PlaceHolderConfig <bean id="placeholderConfig" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"> 
+		<property name="location" value="classpath:argendata.properties"> reads config.properties 
+		file </property> </bean> -->
+
+
+	<bean id="properties"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="ignoreResourceNotFound" value="true" />
+		<property name="locations">
+			<list>
+				<value>classpath:setup.properties</value>
+				<value>classpath:mymessages.properties</value>
+				<value>classpath:argendata.properties</value>
+
+			</list>
+		</property>
+	</bean>
+
+
+
+
+	<bean id="propertiesClass" class="argendata.util.Properties"
+		scope="singleton">
+		<property name="solrServer" value="${solr.Server}" />
+		<property name="reCaptchaPrivateKey" value="${reCaptcha.Private}" />
+		<property name="reCaptchaPublicKey" value="${reCaptcha.Public}" />
+		<property name="mailStartTLSEnable" value="${mail.start.tls.enable}" />
+		<property name="smtpServer" value="${mail.Server}" />
+		<property name="smtpPort" value="${mail.Port}" />
+		<property name="mailAddressFrom" value="${mail.AddressFrom}" />
+		<property name="mailUsername" value="${mail.Username}" />
+		<property name="mailPassword" value="${mail.Password}" />
+		<property name="mailProtocol" value="${mail.Protocol}" />
+		<property name="mainURL" value="${mainURL}" />
+		<property name="sesameServer" value="${sesame.Server}" />
+		<property name="sesameRepositoryName" value="${sesame.RepositoryName}" />
+		<property name="sesameQueryLimit" value="${sesame.QueryLimit}" />
+		<property name="expirationMillis" value="${dataSession.ExpirationMillis}" />
+		<property name="diaryMillis" value="${dataSession.DiaryMillis}" />
+		<property name="namespace" value="${sesame.Namespace}" />
+		<property name="maxQueryLength" value="${maxQueryLength}" />
+		<property name="defaultQuery" value="${defaultQuery}" />
+		<property name="projectName" value="${projectName}" />
+		
+	</bean>
+
+	<bean id="messagesClass" class="argendata.util.Messages" scope="singleton">
+		<property name="mailDatasetAcceptSubject" value="${mail.dataset.accept.subject}" />
+		<property name="mailDatasetAcceptBody" value="${mail.dataset.accept.body}" />
+		<property name="mailDatasetRejectSubject" value="${mail.dataset.reject.subject}" />
+		<property name="mailDatasetRejectBody" value="${mail.dataset.reject.body}" />
+
+		<property name="mailAppAcceptSubject" value="${mail.app.accept.subject}" />
+		<property name="mailAppAcceptBody" value="${mail.app.accept.body}" />
+		<property name="mailAppRejectSubject" value="${mail.app.reject.subject}" />
+		<property name="mailAppRejectBody" value="${mail.app.reject.body}" />
+
+
+		<property name="mailUserMailUpdateSubject" value="${mail.user.mail.update.subject}" />
+		<property name="mailUserMailUpdateBody" value="${mail.user.mail.update.body}" />
+		<property name="mailUserChangePasswordSubject" value="${mail.user.change.password.subject}" />
+		<property name="mailUserChangePasswordBody" value="${mail.user.change.password.body}" />
+
+		<property name="mailErrorReportSubject" value="${mail.error.report.subject}" />
+
+		<property name="messageDatasetReceive" value="${message.dataset.receive}" />
+		<property name="messagePasswordChange" value="${message.password.change}" />
+		<property name="messageUserGreetings" value="${message.user.greetings}" />
+		<property name="messageAppReceive" value="${message.app.receive}" />
+
+
+
+		<property name="messageUserAccountActivate" value="${message.user.account.activate}" />
+		<property name="messageUserAccountNoActivate" value="${message.user.account.no.activate}" />
+
+		<property name="messageUserMustLogin" value="${message.user.must.login}" />
+
+
+		<property name="mailUserNewAccountSubject" value="${mail.user.new.account.subject}" />
+		<property name="mailUserNewAccountBody" value="${mail.user.new.account.body}" />
+
+		<property name="mailUserPasswordSubject" value="${mail.user.password.subject}" />
+		<property name="mailUserPasswordBody" value="${mail.user.password.body}" />
+
+		<property name="invalidAttributes" value="${message.query.invalidAttributes}" />
+		<property name="badQueryEvaluation" value="${message.query.badQueryEvaluation}" />
+		<property name="malformedQuery" value="${message.query.malformedQuery}" />
+		<property name="nonSupportedQuery" value="${message.query.nonSupportedQuery}" />
+		<property name="noResults" value="${message.search.noResults}" />
+		<property name="publisherSelected" value="${message.search.publisherSelected}" />
+
+	</bean>
+
+</beans>

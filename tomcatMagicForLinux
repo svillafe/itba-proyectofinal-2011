@@ -1,0 +1,11 @@
+#!/bin/bash
+# magic for war injection in tomcat server
+# use at you own risk!!! Manu
+
+rm -rf ~/apache-tomcat-6.0.29/webapps/argendata*
+~/apache-tomcat-6.0.29/bin/shutdown.sh
+mvn clean
+mvn package
+cp target/*.war ~/apache-tomcat-6.0.29/webapps/
+~/apache-tomcat-6.0.29/bin/startup.sh
+rm -rf target

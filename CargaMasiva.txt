@@ -1,0 +1,6 @@
+#Titulo,        Licencia, Tags (Separadas con ;),Calidad de la inforamci�n,Modificado(YYYY-MM-DD), Granularidad Geografica, Granularidad Temporal,Publicante, URL de Acceso, Tama�o, Formato, Tipo de Distribucion, Locacion, descripcion 
+Carga Masiva 1, Free1, mi;primer;tag,Alta,2009-05-13,Provincial1, Anual1,Publicante1,www.cargaMasiva1.com,10, PDF1,Feed,,Esto es una descripcion, numero uno.
+Carga Masiva 2, Paga2, mi;segundo;tag,Media,2010-05-13,Provincial2, Anual2,Publicante2,www.cargaMasiva2.com,11, PDF2,Download,Buenos Aires,Esta es la segunda descriopcion.
+Carga Masiva 3, Free3, mi;tercer;tag,Baja,2011-05-13,Provincial3, Anual3,Publicante3,www.cargaMasiva3.com,12, PDF3,Web Service,La rioja,Esta es la tercer descripcion.
+Carga Masiva 4, Paga4, mi;cuarto;tag,Alta,2012-05-13,Provincial4, Anual4,Publicante4,www.cargaMasiva4.com,13, PDF4,Feed,,Esta es la cuarta descripcion, si es la cuarta, creo yo que si.
+Carga Masiva 5, Free5, mi;quinto;tag,Media,2013-05-13,Provincial5, Anual5,Publicante5,www.cargaMasiva5.com,14, PDF5,Download,Neuquen,Esta es la sexta.
